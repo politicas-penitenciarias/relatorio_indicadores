@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Levantamento Nacional de Informações Penitenciárias Relatório Sintético",
+    "section": "",
+    "text": "Quem somos nós\nA Diretoria de Políticas Penitenciárias - Dirpp - está vinculada à Secretaria Nacional de Políticas Penais (Senappen) do Ministério da Justiça e Segurança Pública (MJSP).\nPossui como objetivos primordiais: apoiar a gestão penal dos entes federativos; fomentar a criação e a atuação de conselhos da comunidade; fomentar as políticas de assistências aos presos respeitando as diversidades; promover a articulação com os órgãos e as instituições de execução penal;\nEm consonância com as melhores práticas de transparência no serviço público, o regimento interno do Secretaria Nacional de Políticas Penais (Senappen) - portaria MJ nº 199, de 9 de novembro de 2018 - traz como atribuição da Dirpp em seu artigo 27, entre outros (BRASIL, 2018):\n\n\n\n\n\n\nIII - fomentar planos e ações de integração e gestão de banco de dados nacional de informações e estatísticas sobre os sistemas prisionais da União e dos entes federativos;\nVII - propor estudos e pesquisas relacionados a políticas penais, à gestão e intersetorialidade dos serviços penais e aos servidores penais;\n\n\n\n\n\nApresentação\nCom caráter predominantemente quantitativo, o Levantamento Nacional de Informações Penitenciárias - Infopen - é o processo semestral de coleta, tratamento, análise de dados do Sistema Penitenciário Nacional (SPN). Iniciado no ano de 2004, o processo sofreu inúmeras melhorias estruturais e metodológicas, como por exemplo: aumento de dados coletados; informatização dos procedimentos de coleta e publicidade das informações.\nO intituito principal do Infopen é subsidiar o Estado brasileiro de informações a respeito do sistema prisional e, especificamente:\n\nMapear as unidades prisionais;\nQuantificar as assistências previstas na lei de execução penal e executadas pelos gestores do sistema prisional;\nGerar índices e indicadores para a gestão prisional;\nPublicizar e integrar informações com outros órgãos responsáveis pela execução penal.\n\nAtualmente, o Infopen coleta dados divididos em sete grandes seções, sendo:\n\nDados do estabelecimento: se preocupa em identificar e tipificar o estabelecimento prisional relatando suas características básicas;\nEstrutura física / equipamentos: questões relativas à infraestrutura física das unidades penitenciárias evidenciando os aspectos de saúde, segurança, trabalho, educação e visitação;\nAdministração Penitenciária - Equipe: coleta de dados a respeito de recursos humanos envolvidos na administração prisional e suas assistências nas áreas de saúde, segurança, trabalho, educação;\nPopulação prisional e movimentação: traz dados quantitativos sobre o perfil da pena dos custodiados no SPN com destaque aos regimes de cumprimento de pena, movimentações carcerárias internas e externas às unidades penais;\nPerfil: descreve numericamente o perfil pessoal dos apenados do sistema com preocupação voltada às questões raciais, educacionais, familiares, de gênero, geográficas, civéis, tempo de pena e tipificação penal;\nAções de reintegração social / assistências: voltada à coleta de dados a respeito das assistências social, saúde, religiosa e jurídica. Além disso, traz informações sobre a oferta de trabalho nas unidades prisionais;\nOutros: questões relevantes acerca de processos administrativos, motins, rebeliões, visitas, apreensões de ilícitos e inspeções de órgãos externos.\n\n\n\nSobre este relatório\nEste trabalho trata, sintetiza e analisa os dados coletados pelo Levantamento Nacional de Informações Penitenciárias - Infopen - referente aos últimos quatro ciclos de coleta, sendo: junho de 2021 (10° ciclo), dezembro de 2021 (11° ciclo), junho de 2022 (12° ciclo) e dezembro de 2022 (13° ciclo).\nSendo assim, este produto faz parte da última etapa do processo do Infopen, ou seja, sua publicidade (COLOCAR LINK DAS ETAPAS DO FLUXO).\nPara desenvolvimento, análise de dados, construção de gráficos e tabelas é utilizado a linguagem de programação R programming (R CORE TEAM, 2023) e seus pacotes auxiliares Tidyverse (WICKHAM et al., 2019), Plotly (SIEVERT, 2020), Formattable (REN; RUSSELL, 2021), entre outros.\n\n\nReferências\n\n\n\n\nBRASIL, M. DA J. E. S. P. Portaria n 199, de 9 de novembro de 2018. 2018.\n\n\nR CORE TEAM. R: A Language and Environment for Statistical Computing. Vienna, Austria: R Foundation for Statistical Computing, 2023.\n\n\nREN, K.; RUSSELL, K. formattable: Create ’Formattable’ Data Structures. [s.l: s.n.].\n\n\nSIEVERT, C. Interactive Web-Based Data Visualization with R, plotly, and shiny. [s.l.] Chapman; Hall/CRC, 2020.\n\n\nWICKHAM, H. et al. Welcome to the tidyverse. Journal of Open Source Software, v. 4, n. 43, p. 1686, 2019."
+  },
+  {
+    "objectID": "metodologia.html",
+    "href": "metodologia.html",
+    "title": "1  Metodologia",
+    "section": "",
+    "text": "2 Referências"
+  },
+  {
+    "objectID": "metodologia.html#sec-consideracoes-metodologicas",
+    "href": "metodologia.html#sec-consideracoes-metodologicas",
+    "title": "1  Metodologia",
+    "section": "1.1 Considerações",
+    "text": "1.1 Considerações\nA partir do ano de 2014, o Infopen iniciou a utilização de um formulário eletrônico estruturado e disponibilizado através da plataforma digital de pesquisas (PDP) desenvolvida pelo Fórum Brasileiro de Segurança Pública - FBSP1, nesse sentido, obtendo um grande avanço para melhoria qualitativa e quantitativa da pesquisa (BRASIL, 2016).\nJá a partir de 2017, entrou em vigor o Sistema de Informações do Departamento Penitenciário Nacional - Sisdepen - para substituir a plataforma digital de pesquisas e provocar avanços no processo de coleta e gestão dos dados.\nNesse sentido, o Sisdepen é uma ferramenta de uso gratuito fornecida pelo Ministério da Justiça que visa ao cumprimento da Lei nº 12.714, de 14 de Setembro de 2012 (BRASIL, 2012). A sua finalidade é coletar informações padronizadas para um eficaz mapeamento do sistema penitenciário no País. As informações coletadas estarão à disposição dos usuários para apoio à gestão prisional, formulação de políticas públicas e acompanhamento do cumprimento da pena privativa de liberdade, da prisão cautelar e da medida de segurança.\nA coleta de dados do Infopen possui periodicidade semestral (ciclos) com dois períodos de referência e duas datas de referência. Essa metodologia de coleta sugere uma “fotografia” do Sistema Penitenciário Nacional (SPN) nas datas de 30 de junho e 31 de dezembro de cada ano. A excessão vale para itens que necessitam ser avaliados em um intervalo de tempo, como por exemplo, “quantidade de apreensões de ilícitos no período de referência”."
+  },
+  {
+    "objectID": "metodologia.html#sec-hierarquia",
+    "href": "metodologia.html#sec-hierarquia",
+    "title": "1  Metodologia",
+    "section": "1.2 Hierarquia do processo",
+    "text": "1.2 Hierarquia do processo\nCada ator do processo do levantamento recebe funções bem definidas com possibilidade de acumulação de atividades por um mesmo operador.\n\nUsuário Institucional Estadual:\nGestor Institucional Estadual:\nGestor Institucional Federal:\nAdministrador:"
+  },
+  {
+    "objectID": "metodologia.html#sec-etapas",
+    "href": "metodologia.html#sec-etapas",
+    "title": "1  Metodologia",
+    "section": "1.3 Etapas do processo",
+    "text": "1.3 Etapas do processo\nO fluxo de trabalho do Infopen é dividida em etapas, sendo:\n\nPreparação para abertura do ciclo:\nAbertura do ciclo de coleta:\nValidação dos dados:\nTratamento de dados:\nPublicidade das informações:"
+  },
+  {
+    "objectID": "metodologia.html#sec-resultados-publicidade",
+    "href": "metodologia.html#sec-resultados-publicidade",
+    "title": "1  Metodologia",
+    "section": "1.4 Resultados e publicidade",
+    "text": "1.4 Resultados e publicidade\nRelatório de Validação de Dados\nPainel de informações\nBanco de dados\nRelatórios analíticos\nRelatório Sintético"
+  },
+  {
+    "objectID": "metodologia.html#footnotes",
+    "href": "metodologia.html#footnotes",
+    "title": "1  Metodologia",
+    "section": "",
+    "text": "A atuação do Fórum Brasileiro de Segurança Pública na coleta de dados é disciplinada pelo Termo de Parceria nº 817052/2015, firmado entre o Fórum Brasileiro de Segurança Pública e o Ministério da Justiça para Pesquisa e análise de dados vinculados ao campo da segurança pública e sistema penitenciário.↩︎"
+  },
+  {
+    "objectID": "estatisticas_ciclo13.html#sec-dados-gerais-ciclo13",
+    "href": "estatisticas_ciclo13.html#sec-dados-gerais-ciclo13",
+    "title": "2  Décimo terceiro ciclo - Dez/2022",
+    "section": "\n2.1 Dados Gerais",
+    "text": "2.1 Dados Gerais\nOs indicadores básicos relacionam características primárias do Sistema Prisional e dados geopolíticos, tais como: quantidade de pessoas em situação de privação de liberdade, total de pessoas cumprindo pena em prisão domiciliar, vagas ativas em estabelecimentos prisionais e totalidade de habitantes em território nacional.\n\n2.1.1 Indicadores populacionais - Brasil\nPara este ciclo foram contabilizadas 826.740 pessoas cumprindo algum tipo de medida punitiva em âmbitos estadual ou federal. Desse universo, 781.481 são do sexo masculino, enquanto 45.259 pertencem ao sexo feminino.\nDentro das modalidades de cumprimento de pena, a população prisional brasileira é composta por:\n\nPessoas custodiadas em unidades prisionais estaduais e federais, carceragens de polícia judiciária estaduais e da união, batalhões de polícia militar, batalhões de corpo de bombeiro;\nPessoas cumprindo pena em prisão domiciliar com monitoração eletrônica (tornozeleira eletrônica ou outro dispositivo);\nPessoas cumprindo pena em prisão domiciliar sem monitoração eletrônica;\n\nA tabela abaixo detalha os indicadores populacionais do sistema separando-os de acordo com os critérios supracitados.\n\n\n?(caption)\n\n\n\n\n\n\n\n\n\n   \nOs próximos quadros resumem graficamente a tabela acima. A Figura 2.1 relaciona as variáveis modalidade e sexo, dessa forma, mostra a incidência de cada uma.\n\n\n\nFigura 2.1: Opções de modalidade de custódia separados por sexo.\n\n\n \nA Figura 2.2 evidencia os valores relativos de cada modalidade e, graficamente, mostra a proporção de incidência de cada possilidade.\n \n\n\n\nFigura 2.2: Modalidades em valores relativos e absolutos.\n\n\n\n2.1.2 Indicadores populacionais - Unidades Federativas\nApós a análise abrangente em nível nacional, segue-se com a segmentação dos indicadores populacionais de cada unidade federativa.\nA tabela a seguir lista os indicadores mantendo-se a metodologia utilizada na seção 2.1.1, porém inclui-se a possibilidade de filtragem e visualização dos valores para cada unidade federativa.\n\n\n?(caption)\n\n\n\n\n\n\n\n\n\n\n\n\nFigura 2.3: População prisional total por unidade federativa em valores absolutos e relativos considerando: as pessoas custodiadas em unidades prisionais; e em prisão domiciliar monitoradas eletronicamente ou não.\n\n\n&nbsp\n\n\n\nFigura 2.4: População das unidades por unidade federativa. A proporção considerando o sexo das pessoas presas está enfatizado em diferentes cores. Para melhor visualização da proporção, o gráfico está em escala logarítmica.\n\n\n&nbsp\n\n2.1.3 Indicadores de capacidade\nA metodologia para contabilização das vagas no sistema inclui apenas o espaço físico em unidades prisionais, porém a pesquisa levanta o número de equipamentos de monitoramento eletrônico (tornozeleiras), conforme tabela abaixo.\n\n\n?(caption)"
+  },
+  {
+    "objectID": "estatisticas_ciclo13.html#referências",
+    "href": "estatisticas_ciclo13.html#referências",
+    "title": "2  Décimo terceiro ciclo - Dez/2022",
+    "section": "Referências",
+    "text": "Referências"
+  }
+]
