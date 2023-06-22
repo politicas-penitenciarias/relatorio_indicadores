@@ -1,0 +1,53 @@
+# Quem somos nós {.unnumbered}
+
+A Diretoria de Políticas Penitenciárias - Dirpp - está vinculada à Secretaria Nacional de Políticas Penais (Senappen) do Ministério da Justiça e Segurança Pública (MJSP).
+
+Possui como objetivos primordiais: apoiar a gestão penal dos entes federativos; fomentar a criação e a atuação de conselhos da comunidade; fomentar as políticas de assistências aos presos respeitando as diversidades; promover a articulação com os órgãos e as instituições de execução penal;
+
+Em consonância com as melhores práticas de transparência no serviço público, o regimento interno do Secretaria Nacional de Políticas Penais (Senappen) - portaria MJ nº 199, de 9 de novembro de 2018 - traz como atribuição da Dirpp em seu artigo 27, entre outros [@portaria_199_2018]:
+
+::: {.callout-note appearance="simple"}
+*III - fomentar planos e ações de integração e gestão de banco de dados nacional de informações e estatísticas sobre os sistemas prisionais da União e dos entes federativos;*
+
+*VII - propor estudos e pesquisas relacionados a políticas penais, à gestão e intersetorialidade dos serviços penais e aos servidores penais;*
+:::
+
+# Apresentação {.unnumbered}
+
+Com caráter predominantemente quantitativo, o Levantamento Nacional de Informações Penitenciárias - Infopen - é o processo semestral de coleta, tratamento, análise de dados do Sistema Penitenciário Nacional (SPN). Iniciado no ano de 2004, o processo sofreu inúmeras melhorias estruturais e metodológicas, como por exemplo: aumento de dados coletados; informatização dos procedimentos de coleta e publicidade das informações.
+
+O intituito principal do Infopen é subsidiar o Estado brasileiro de informações a respeito do sistema prisional e, especificamente:
+
+-   Mapear as unidades prisionais;
+
+-   Quantificar as assistências previstas na lei de execução penal e executadas pelos gestores do sistema prisional;
+
+-   Gerar índices e indicadores para a gestão prisional;
+
+-   Publicizar e integrar informações com outros órgãos responsáveis pela execução penal.
+
+Atualmente, o Infopen coleta dados divididos em sete grandes seções, sendo:
+
+1.  **Dados do estabelecimento:** se preocupa em identificar e tipificar o estabelecimento prisional relatando suas características básicas;
+
+2.  **Estrutura física / equipamentos:** questões relativas à infraestrutura física das unidades penitenciárias evidenciando os aspectos de saúde, segurança, trabalho, educação e visitação;
+
+3.  **Administração Penitenciária - Equipe:** coleta de dados a respeito de recursos humanos envolvidos na administração prisional e suas assistências nas áreas de saúde, segurança, trabalho, educação;
+
+4.  **População prisional e movimentação:** traz dados quantitativos sobre o perfil da pena dos custodiados no SPN com destaque aos regimes de cumprimento de pena, movimentações carcerárias internas e externas às unidades penais;
+
+5.  **Perfil:** descreve numericamente o perfil pessoal dos apenados do sistema com preocupação voltada às questões raciais, educacionais, familiares, de gênero, geográficas, civéis, tempo de pena e tipificação penal;
+
+6.  **Ações de reintegração social / assistências:** voltada à coleta de dados a respeito das assistências social, saúde, religiosa e jurídica. Além disso, traz informações sobre a oferta de trabalho nas unidades prisionais;
+
+7.  **Outros:** questões relevantes acerca de processos administrativos, motins, rebeliões, visitas, apreensões de ilícitos e inspeções de órgãos externos.
+
+# Sobre este relatório {.unnumbered}
+
+Este trabalho trata, sintetiza e analisa os dados coletados pelo Levantamento Nacional de Informações Penitenciárias - Infopen - referente aos últimos quatro ciclos de coleta, sendo: junho de 2021 (10° ciclo), dezembro de 2021 (11° ciclo), junho de 2022 (12° ciclo) e dezembro de 2022 (13° ciclo).
+
+Sendo assim, este produto faz parte da última etapa do processo do Infopen, ou seja, sua publicidade (COLOCAR LINK DAS ETAPAS DO FLUXO).
+
+Para desenvolvimento, análise de dados, construção de gráficos e tabelas é utilizado a linguagem de programação *R programming* [@manual_r] e seus pacotes auxiliares *Tidyverse* [@tidyverse], *Plotly* [@plotly], *Formattable* [@formattable], entre outros.
+
+# Referências {.unnumbered}

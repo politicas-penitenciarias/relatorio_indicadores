@@ -1,0 +1,48 @@
+# Metodologia {#sec-metodologia}
+
+O processo de coleta e tratamento de dados do Sistema Penitenciário Nacional - SPN - possui todas as características de uma pesquisa científica. Nesse sentido, este capítulo visa resumir o planejamento execução do Levantamento Nacional de Informações Penitenciárias - Infopen.
+
+## Considerações {#sec-consideracoes-metodologicas}
+
+A partir do ano de 2014, o Infopen iniciou a utilização de um formulário eletrônico estruturado e disponibilizado através da plataforma digital de pesquisas (PDP) desenvolvida pelo Fórum Brasileiro de Segurança Pública - FBSP[^metodologia-1], nesse sentido, obtendo um grande avanço para melhoria qualitativa e quantitativa da pesquisa [@infopen_2016_1].
+
+[^metodologia-1]: A atuação do Fórum Brasileiro de Segurança Pública na coleta de dados é disciplinada pelo Termo de Parceria nº 817052/2015, firmado entre o Fórum Brasileiro de Segurança Pública e o Ministério da Justiça para Pesquisa e análise de dados vinculados ao campo da segurança pública e sistema penitenciário.
+
+Já a partir de 2017, entrou em vigor o Sistema de Informações do Departamento Penitenciário Nacional - Sisdepen - para substituir a plataforma digital de pesquisas e provocar avanços no processo de coleta e gestão dos dados.
+
+Nesse sentido, o Sisdepen é uma ferramenta de uso gratuito fornecida pelo Ministério da Justiça que visa ao cumprimento da Lei nº 12.714, de 14 de Setembro de 2012 [@lei_sisdepen]. A sua finalidade é coletar informações padronizadas para um eficaz mapeamento do sistema penitenciário no País. As informações coletadas estarão à disposição dos usuários para apoio à gestão prisional, formulação de políticas públicas e acompanhamento do cumprimento da pena privativa de liberdade, da prisão cautelar e da medida de segurança.
+
+A coleta de dados do Infopen possui periodicidade semestral (ciclos) com dois **períodos de referência** e duas **datas de referência**. Essa metodologia de coleta sugere uma "fotografia" do Sistema Penitenciário Nacional (SPN) nas datas de 30 de junho e 31 de dezembro de cada ano. A excessão vale para itens que necessitam ser avaliados em um intervalo de tempo, como por exemplo, *"quantidade de apreensões de ilícitos no período de referência"*.
+
+## Hierarquia do processo {#sec-hierarquia}
+
+Cada ator do processo do levantamento recebe funções bem definidas com possibilidade de acumulação de atividades por um mesmo operador.
+
+-   **Usuário Institucional Estadual:**
+-   **Gestor Institucional Estadual:**
+-   **Gestor Institucional Federal:**
+-   **Administrador:**
+
+## Etapas do processo {#sec-etapas}
+
+O fluxo de trabalho do Infopen é dividida em etapas, sendo:
+
+1.  **Preparação para abertura do ciclo:**
+2.  **Abertura do ciclo de coleta:**
+3.  **Validação dos dados:**
+4.  **Tratamento de dados:**
+5.  **Publicidade das informações:**
+
+## Resultados e publicidade {#sec-resultados-publicidade}
+
+Relatório de Validação de Dados
+
+Painel de informações
+
+Banco de dados
+
+Relatórios analíticos
+
+Relatório Sintético
+
+# Referências {#sec-referencias-metodologia}

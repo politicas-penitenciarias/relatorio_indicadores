@@ -1,0 +1,581 @@
+# Décimo terceiro ciclo - Dez/2022 {#sec-parametros-indicadores-ciclo13}
+
+```{r message=FALSE, comment=FALSE}
+library(tidyverse)
+library(knitr)
+library(plotly)
+library(kableExtra)
+library(DT)
+library(gganimate)
+library(formattable)
+library(abjutils)
+library(janitor)
+library(ggforce) #UTILIZA FACET_WRAP_PAGINATE
+
+cores <- c("#294661","#7F312F","#808080","#B8860B","#5E3B56","#5F9EA0","#808000","#A0522D",
+           "#F5DEB3","#FF9900","#8B008B","#5F6B6D","#FB8281","#F4D25A","#7F898A","#A4DDEE",
+           "#FDAB89","#B687AC","#28738A","#A78F8F","#168980","darkred","#0000FF","#00FFFF",
+           "#DAA520","#DEB887") #VETOR DE CORES PARA OS GRAFICOS
+
+
+vetor_filtro_ciclo <- 13
+vetor_filtro_semestre <- "segundo"
+vetor_filtro_ano <- 2022
+
+```
+
+Este capítulo traz as informações pormenorizadas acerca do `r str_c(vetor_filtro_ciclo,"°")` ciclo do Levantamento Nacional de Informações Penitenciárias - Infopen - referente ao `r vetor_filtro_semestre` semestre de `r vetor_filtro_ano`.
+
+O objetivo principal é mapear as características do Sistema Penitenciário Nacional (SPN) de acordo com as áreas de atuação da Diretoria de Políticas Penitenciárias - Dirpp. Especificamente, este capítulo visa: gerar índices / indicadores para apoio a tomada de decisão dos gestores; e explicar as informações em formatos descritivo, gráfico e tabular;
+
+## Dados Gerais {#sec-dados-gerais-ciclo13}
+
+```{r}
+populacao01_soma_brasil <- 
+  readRDS("../data/data_rds/rel02_populacao01.rds") |> 
+  filter(ciclo == vetor_filtro_ciclo)
+
+populacao02_soma_brasil_sexo <- 
+  readRDS("../data/data_rds/rel02_populacao01.rds") |> 
+  filter(ciclo == vetor_filtro_ciclo) |> 
+  group_by(sexo) |> 
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  )
+
+
+
+
+```
+
+Os indicadores básicos relacionam características primárias do Sistema Prisional e dados geopolíticos, tais como: quantidade de pessoas em situação de privação de liberdade, total de pessoas cumprindo pena em prisão domiciliar, vagas ativas em estabelecimentos prisionais e totalidade de habitantes em território nacional.
+
+### Indicadores populacionais - Brasil {#sec-indicadores-populacionais-brasil-ciclo13}
+
+Para este ciclo foram contabilizadas **`r format(sum(populacao01_soma_brasil$qtd),big.mark = ".", decimal.mark = ",")`** pessoas cumprindo algum tipo de medida punitiva em âmbitos estadual ou federal. Desse universo, **`r format(sum(populacao02_soma_brasil_sexo$qtd[2]),big.mark = ".", decimal.mark = ",")`** são do sexo masculino, enquanto **`r format(sum(populacao02_soma_brasil_sexo$qtd[1]),big.mark = ".", decimal.mark = ",")`** pertencem ao sexo feminino.
+
+Dentro das modalidades de cumprimento de pena, a população prisional brasileira é composta por:
+
+-   Pessoas custodiadas em unidades prisionais estaduais e federais, carceragens de polícia judiciária estaduais e da união, batalhões de polícia militar, batalhões de corpo de bombeiro;
+-   Pessoas cumprindo pena em prisão domiciliar com monitoração eletrônica (tornozeleira eletrônica ou outro dispositivo);
+-   Pessoas cumprindo pena em prisão domiciliar sem monitoração eletrônica;
+
+A tabela abaixo detalha os indicadores populacionais do sistema separando-os de acordo com os critérios supracitados.
+
+```{r, message=FALSE}
+#| label: tbl-indicadores-populacionais-ciclo13
+#| tbl-cap: >
+#|   QUantidade de pessoas cumprindo penas estratificadas por tipo de custódia (modalidade) e sexo.
+    
+
+t1 <- 
+  readRDS("../data/data_rds/rel02_populacao01.rds") |> 
+  filter(ciclo == vetor_filtro_ciclo) |> 
+  group_by(modalidade,sexo) |> 
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  ) |> 
+  pivot_wider(
+    names_from = sexo,
+    values_from = qtd
+  ) |> 
+  mutate(
+    Total = Masculino + Feminino
+  ) |> 
+  adorn_totals()
+names(t1) <- c("Modalidade","Feminino","Masculino","Total")
+
+formattable::formattable(
+    t1, 
+    align = c("c","l","l","l"),
+    list(
+    `Modalidade` = color_tile("lightgrey","orange"),
+    
+    area(col = c(`Feminino`)) ~ normalize_bar("#F6FF98", 0.2),
+    area(col = c(`Masculino`)) ~ normalize_bar("#F6FF98", 0.2),
+    area(col = c(`Total`)) ~ normalize_bar("lightblue", 0.2)
+  )) |> 
+  as.datatable(
+    escape = FALSE,
+    #options = list(scrollX = TRUE),
+    rownames = FALSE,
+    filter = "top",
+    options = list(
+    pageLength = 5, 
+    autoWidth = TRUE,
+    initComplete = JS(
+    "function(settings, json) {",
+    "$('body').css({'font-family': 'Calibri'});",
+    "}"
+    ),
+    language = list(
+      info = 'Mostrando de _START_ para _END_ em um total de _TOTAL_ registros',
+      paginate = list(previous = 'Anterior', `next` = 'Seguinte'),
+      url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json'
+    )
+  #pageLength = 5
+    )
+  )
+  
+```
+
+   
+
+Os próximos quadros resumem graficamente a tabela acima. A @fig-indicadores-populacionais1-ciclo13 relaciona as variáveis modalidade e sexo, dessa forma, mostra a incidência de cada uma.
+
+```{r}
+#| label: fig-indicadores-populacionais1-ciclo13
+#| fig-cap: >  
+#|       Opções de modalidade de custódia separados por sexo.
+
+p1 <- 
+ readRDS("../data/data_rds/rel02_populacao01.rds") |> 
+  filter(ciclo == vetor_filtro_ciclo) |> 
+  group_by(modalidade,sexo) |> 
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  ) |> 
+  pivot_wider(
+    names_from = sexo,
+    values_from = qtd
+  ) 
+
+p1 <- p1 |>
+  plot_ly(
+    x = ~ modalidade,
+    y = ~ Masculino,
+    name = "Masculino",
+    type = 'bar',
+    text = ~ Masculino,
+    textposition = "auto",
+    alpha = 0.7,
+    marker = list(color = "#294661")
+  )
+
+p1 <- p1 |>
+  add_trace(
+    y = ~ `Feminino`,
+    name = "Feminino",
+    type = 'bar',
+    text = ~ Feminino,
+    textposition = "auto",
+    alpha = 0.7,
+    marker = list(color = "#7F312F")
+  )
+
+p1 <- p1 |> layout(
+  dragmode='drawopenpath', # INCLUI A FERRAMENTA PARA DESENHO
+  newshape=list(line = list(color='cyan', opacity = 0.5 )), 
+  #title = "Tempos médios / 2021",
+  uniformtext=list(minsize=8, mode='hide'),
+  font = list(family = "Calibri", color = "#294661", size = 14.5),
+  xaxis = list(title = ""),
+  yaxis = list(title = "Quantidade"),
+  legend = list(orientation = "v")
+)
+
+# CONFIGURACAO DAS FORMAS DE DESENHO NO GRAFICO
+p1 <- config(
+  p1,
+  modeBarButtonsToAdd = list(
+                           'drawline', 
+                           'drawopenpath', 
+                           'drawclosedpath', 
+                           'drawcircle', 
+                           'drawrect', 
+                           'eraseshape'
+                       )
+  )  |> 
+  layout(plot_bgcolor='#FFFFFF',
+          xaxis = list(
+            zerolinecolor = '#ffff',
+            zerolinewidth = 2,
+            gridcolor = 'ffff'),
+          yaxis = list(
+            zerolinecolor = '#ffff',
+            zerolinewidth = 2,
+            gridcolor = 'ffff')
+          )
+
+p1
+
+```
+
+ 
+
+A @fig-indicadores-populacionais2-ciclo13 evidencia os valores relativos de cada modalidade e, graficamente, mostra a proporção de incidência de cada possilidade.
+
+ 
+
+```{r}
+#| label: fig-indicadores-populacionais2-ciclo13
+#| fig-cap: >  
+#|      Modalidades em valores relativos e absolutos. 
+
+
+p1_relativo <- 
+ readRDS("../data/data_rds/rel02_populacao01.rds") |> 
+  filter(ciclo == vetor_filtro_ciclo) |> 
+  group_by(modalidade) |> 
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  ) |> 
+  plot_ly(
+    labels = ~ modalidade,
+    values = ~ qtd,
+    type = 'pie',
+    hole = 0.6,
+    textinfo = "text+percent", #label+percent,
+    hoverinfo = 'text+percent',
+    text = ~ qtd,
+    textposition = "auto",
+    alpha = 0.7,
+    marker = list(colors = cores,
+                  line = list(color = '#FFFFFF', width = 1) #LINHA DE SEPARACAO DOS SETORES
+              ),
+    showlegend = TRUE
+  )
+
+p1_relativo <-  p1_relativo |> layout(
+  #title = "Tempos médios / 2021",
+  uniformtext=list(minsize=8, mode='hide'),
+  font = list(family = "Calibri", color = "#294661", size = 14),
+  #xaxis = list(title = ""),
+  #yaxis = list(title = "Quantidade de Manifestações"),
+  legend = list(orientation = "v")
+)
+
+# CONFIGURACAO DAS FORMAS DE DESENHO NO GRAFICO
+p1_relativo <- config(p1_relativo,modeBarButtonsToAdd = list('drawline', 
+                                 'drawopenpath', 
+                                 'drawclosedpath', 
+                                 'drawcircle', 
+                                 'drawrect', 
+                                 'eraseshape')) %>%layout(plot_bgcolor='#e5ecf6',
+          xaxis = list(
+            zerolinecolor = '#ffff',
+            zerolinewidth = 2,
+            gridcolor = 'ffff'),
+          yaxis = list(
+            zerolinecolor = '#ffff',
+            zerolinewidth = 2,
+            gridcolor = 'ffff')
+          )
+p1_relativo
+```
+
+### Indicadores populacionais - Unidades Federativas {#sec-indicadores-populacionais-Estados-ciclo13}
+
+Após a análise abrangente em nível nacional, segue-se com a segmentação dos indicadores populacionais de cada unidade federativa.
+
+A tabela a seguir lista os indicadores mantendo-se a metodologia utilizada na [seção @sec-indicadores-populacionais-brasil-ciclo13], porém inclui-se a possibilidade de filtragem e visualização dos valores para cada unidade federativa.
+
+```{r, message=FALSE}
+#| label: tbl-indicadores-populacionais-estados-ciclo13
+#| tbl-cap: >
+#|   QUantidade de pessoas cumprindo penas estratificadas por tipo de custódia (modalidade), âmbito, unidade federativa e sexo.
+    
+
+t1 <- 
+  readRDS("../data/data_rds/rel02_populacao01.rds") |> 
+  filter(ciclo == vetor_filtro_ciclo) |> 
+  group_by(uf,modalidade,sexo) |> 
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  ) |> 
+  pivot_wider(
+    names_from = sexo,
+    values_from = qtd
+  ) |> 
+  mutate(
+    Total = Masculino + Feminino
+  ) |> 
+  adorn_totals()
+names(t1) <- c("Unidade Federativa","Modalidade","Feminino","Masculino","Total")
+
+formattable::formattable(
+    t1, 
+    align = c("c","c","l","l","l"),
+    list(
+    `Modalidade` = color_tile("lightgrey","orange"),
+    
+    area(col = c(`Feminino`)) ~ normalize_bar("#F6FF98", 0.2),
+    area(col = c(`Masculino`)) ~ normalize_bar("#F6FF98", 0.2),
+    area(col = c(`Total`)) ~ normalize_bar("lightblue", 0.2)
+  )) |> 
+  as.datatable(
+    escape = FALSE,
+    #options = list(scrollX = TRUE),
+    rownames = FALSE,
+    filter = "top",
+    options = list(
+    pageLength = 5, 
+    autoWidth = TRUE,
+    initComplete = JS(
+    "function(settings, json) {",
+    "$('body').css({'font-family': 'Calibri'});",
+    "}"
+    ),
+    language = list(
+      info = 'Mostrando de _START_ para _END_ em um total de _TOTAL_ registros',
+      paginate = list(previous = 'Anterior', `next` = 'Seguinte'),
+      url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json'
+    )
+  #pageLength = 5
+    )
+  )
+  
+```
+
+```{r}
+#| label: fig-indicadores-populacionais_uf1-ciclo13
+#| fig-cap: >  
+#|       População prisional total por unidade federativa em valores absolutos e relativos considerando:
+#|       as pessoas custodiadas em unidades prisionais; e em prisão domiciliar monitoradas 
+#|       eletronicamente ou não. 
+
+
+p1 <-  
+  readRDS("../data/data_rds/rel02_populacao01.rds") |> 
+  filter(
+    ciclo == vetor_filtro_ciclo,
+    #modalidade == "Custódia em unidade prisional"
+  ) |> 
+  group_by(uf) |> 
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  ) |> 
+  ungroup() |> 
+  mutate(
+    soma = sum(qtd,na.rm = TRUE),
+    porc = round((qtd / soma)*100, digits = 2)
+  ) |> 
+  arrange(desc(qtd)) |>
+  mutate(
+    uf = factor(uf, levels = uf, ordered = TRUE) 
+  ) |> 
+  plot_ly(
+    x = ~ uf,
+    y = ~ qtd,
+    type = 'bar',
+    #color = cores,
+    #colors =  cores,
+    text = ~ str_c( `qtd`," / ",porc,"%"),
+    textposition = "auto",
+    textfont = list(family = "Calibri",size = 16),
+    #hole = 0.6,
+    #textinfo = "text+percent", #label+percent,
+    #hoverinfo = 'text+percent',
+    alpha = 0.8,
+    marker = list(
+      color = "#294661",
+      line = list(
+        color = '#FFFFFF', 
+        width = 1.5
+        ) #LINHA DE SEPARACAO DOS SETORES
+      ),
+    showlegend = TRUE
+  )
+
+p1 <- config(
+  p1,
+  modeBarButtonsToAdd = list(
+                           'drawline', 
+                           'drawopenpath', 
+                           'drawclosedpath', 
+                           'drawcircle', 
+                           'drawrect', 
+                           'eraseshape'
+                       )
+  )  |> 
+  layout(
+    plot_bgcolor='#FFFFFF',
+    xaxis = list(
+      title = "Unidades Federativas",
+      showline = FALSE,
+      showticklabels = TRUE,
+      zerolinecolor = '#ffffff',
+      zerolinewidth = 2,
+      gridcolor = '#ffffff'
+    ),
+    yaxis = list(
+      title = "Capacidade",
+      showline = FALSE,
+      showticklabels = FALSE,
+      zerolinecolor = '#ffffff',
+      zerolinewidth = 2,
+      gridcolor = '#ffffff',
+      range = c(0.0,max(p1$qtd)*1.2)
+    ),
+    barmode = "stack",  # OU "group" - EMPILHA AS COLUNAS
+    #title = "Tempos médios / 2021",
+    #uniformtext=list(minsize=10, mode='hide'),
+    font = list(
+      family = "Calibri", 
+      color = "#294661", 
+      size = 14
+    ),
+  legend = list(orientation = "h")
+  )
+  
+p1
+
+```
+
+&nbsp
+
+```{r}
+#| label: fig-indicadores-populacionais_uf2-ciclo13
+#| fig-cap: >
+#|       População das unidades por unidade federativa. A proporção considerando o
+#|       sexo das pessoas presas está enfatizado em diferentes cores. Para melhor visualização da
+#|       proporção, o gráfico está em escala logarítmica.
+
+
+p1 <-
+  readRDS("../data/data_rds/rel02_populacao01.rds") |>
+  filter(
+    ciclo == vetor_filtro_ciclo,
+    #modalidade == "Custódia em unidade prisional"
+  ) |>
+  group_by(uf,sexo) |>
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  ) |>
+  arrange(desc(qtd)) |>
+  plot_ly(
+    x = ~ uf,
+    y = ~ log10(qtd),
+    type = 'bar',
+    color = ~ sexo,
+    colors =  c("#7F312F","#294661"),
+    text = ~ str_c( `qtd`),
+    textposition = "outside",
+    textfont = list(family = "Calibri",size = 16),
+    alpha = 0.8,
+     marker = list(
+      #color = "#294661",
+      #colors = cores,
+      line = list(
+        color = '#FFFFFF',
+        width = 1
+        ) #LINHA DE SEPARACAO DOS SETORES
+      ),
+    showlegend = TRUE
+  )
+
+p1 <- config(
+  p1,
+  modeBarButtonsToAdd = list(
+                           'drawline',
+                           'drawopenpath',
+                           'drawclosedpath',
+                           'drawcircle',
+                           'drawrect',
+                           'eraseshape'
+                       )
+  )  |>
+  layout(
+    plot_bgcolor='#FFFFFF',
+    xaxis = list(
+      title = "Unidades Federativas",
+      showline = FALSE,
+      showticklabels = TRUE,
+      zerolinecolor = '#ffffff',
+      zerolinewidth = 2,
+      gridcolor = 'ffff'
+    ),
+    yaxis = list(
+      title = "Capacidade",
+      showline = FALSE,
+      showticklabels = FALSE,
+      zerolinecolor = '#ffffff',
+      zerolinewidth = 2,
+      gridcolor = '#ffffff',
+      range = c(0.0,max(p1$qtd)*1.2)
+    ),
+    barmode = "stack",  # OU "group" - EMPILHA AS COLUNAS
+    #title = "Tempos médios / 2021",
+    #uniformtext=list(minsize=10, mode='hide'),
+    font = list(
+      family = "Calibri",
+      color = "#294661",
+      size = 14
+    ),
+  legend = list(orientation = "h")
+  )
+
+p1
+
+```
+
+
+&nbsp
+
+
+### Indicadores de capacidade {#sec-indicadores-capacidade-ciclo13}
+
+A metodologia para contabilização das vagas no sistema inclui apenas o espaço físico em unidades prisionais, porém a pesquisa levanta o número de equipamentos de monitoramento eletrônico (tornozeleiras), conforme tabela abaixo.
+
+```{r}
+#| label: tbl-indicadores-capacidade-ciclo13
+#| tbl-cap: >
+#|   Capacidade das unidades penais estratificadas por tipo de custódia (modalidade), âmbito e sexo.   
+    
+
+t1 <-  
+  readRDS("../data/data_rds/rel01_capacidade01.rds") |> 
+  filter(ciclo == vetor_filtro_ciclo) |> 
+  group_by(modalidade,sexo) |> 
+  summarise(
+    qtd = sum(qtd,na.rm = TRUE)
+  ) |> 
+  pivot_wider(
+    names_from = sexo,
+    values_from = qtd
+  ) |> 
+  filter(Masculino > 0 && Feminino > 0) |> 
+  mutate(
+    Total = Masculino + Feminino
+  ) |> 
+  janitor::adorn_totals()
+names(t1) <- c("Modalidade","Feminino","Masculino","Total")
+
+formattable::formattable(
+    t1, 
+    align = c("c","l","l","l"),
+    list(
+    #`UF` = color_tile("lightgrey","orange"),
+    `Modalidade` = color_tile("lightgrey","orange"),
+    #`Âmbito` = color_tile("lightblue","lightyellow"),
+    
+    area(col = c(`Feminino`)) ~ normalize_bar("#F6FF98", 0.2),
+    area(col = c(`Masculino`)) ~ normalize_bar("#F6FF98", 0.2),
+    area(col = c(`Total`)) ~ normalize_bar("lightblue", 0.2)
+  )) |> 
+  as.datatable(
+    escape = FALSE,
+    #options = list(scrollX = TRUE),
+    rownames = FALSE,
+    filter = "top",
+    options = list(
+    pageLength = 5, 
+    autoWidth = TRUE,
+    initComplete = JS(
+    "function(settings, json) {",
+    "$('body').css({'font-family': 'Calibri'});",
+    "}"
+    ),
+    language = list(
+      info = 'Mostrando de _START_ para _END_ em um total de _TOTAL_ registros',
+      paginate = list(previous = 'Anterior', `next` = 'Seguinte'),
+      url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Portuguese-Brasil.json'
+    )
+  #pageLength = 5
+    )
+  )
+```
+
+ 
+
+## Referências {.unnumbered}
