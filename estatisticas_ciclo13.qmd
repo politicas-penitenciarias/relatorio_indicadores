@@ -28,13 +28,52 @@ vetor_modalidade <- c("Custódia em unidade prisional",
                     )
 ```
 
+```{r}
+rel09_unid01 <- 
+  readRDS("data/data_rds/rel09_unid01.rds") |>
+  filter(ciclo == vetor_filtro_ciclo) 
+```
+
+
 Este capítulo traz as informações pormenorizadas acerca do `r str_c(vetor_filtro_ciclo,"°")` ciclo do Levantamento Nacional de Informações Penitenciárias - Infopen - referente ao `r vetor_filtro_semestre` semestre de `r vetor_filtro_ano`.
 
-O objetivo principal é mapear as características do Sistema Penitenciário Nacional (SPN) de acordo com as áreas de atuação da Diretoria de Políticas Penitenciárias - Dirpp. Especificamente, este capítulo visa: gerar índices / indicadores para apoio a tomada de decisão dos gestores; e explicar as informações em formatos descritivo, gráfico e tabular;
+Foram coletadas informações de 
+**`r format(sum(rel09_unid01$conta_unidades), big.mark = ".", decimal.mark = ",")`**
+unidades prisionais das **1.551** existentes em territórios nacional 
+administradas pelo poder executivo em âmbitos federal e estadual, ou seja, cerca **99%** dos estabelecimentos
+responderam à pesquisa. Essas unidades são divididas em três tipos básicos considerando a forma 
+de monitoramento da custódia, sendo: 
+**`r format(rel09_unid01$conta_unidades[1], big.mark = ".", decimal.mark = ",")`**
+unidades realizando a custódia tradicional de pessoas; 
+**`r format(rel09_unid01$conta_unidades[2], big.mark = ".", decimal.mark = ",")`**
+estabelecimentos possuindo infraestrutura para monitoramento eletrônico de pessoas em prisão 
+domiciliar e; por fim,
+**`r format(rel09_unid01$conta_unidades[3], big.mark = ".", decimal.mark = ",")`**
+locais com responsabilidade de fiscalização de pessoas em prisão domiciliar sem 
+auxílio de dispositivos eletrônicos de monitoramento. 
+
+
+Outra fonte de dados traz informações acerca de pessoas presas em carceragens de delegacias e batalhões de polícia e bombeiro
+militares. Essa pesquisa é realizada em formulário simplificado diretamente com os órgãos responsáveis 
+pela administração dos supramencionados locais de encarceramento. Nesse caso, não houve resposta dos
+orgãos no seguintes estados:
+
+- **Departamento de Polícia Federal:** Amazonas, Distrito Federal, Espírito Santo, Maranhão, Minas Gerais,
+Mato Grosso do Sul, Paraíba, Rondônia, Roraima, Rio Grande do Sul, Santa Catarina, Sergipe e Tocantins;
+
+- **Departamento de Polícia Civil:** Alagoas, Amapá, Ceará, Maranhão, Piauí, Rio Grande do Norte, Rondônia,
+Santa Catarina e Tocantins;
+
+- **Polícia Militar:** Acre, Amapá, Ceará, Paraíba, Sergipe e Tocantins;
+
+- **Corpo de Bombeiro Militar:** Acre, Amapá, Ceará, Maranhão, Rio Grande do Sul, Sergipe, 
+São Paulo e Tocantins.
+
+O objetivo principal deste capítulo é mapear as características do Sistema Penitenciário Nacional (SPN) com prioridade de acordo com as áreas de atuação da Diretoria de Políticas Penitenciárias - Dirpp. Especificamente, este capítulo visa: gerar índices / indicadores para apoio a tomada de decisão dos gestores; e explicar as informações em formatos descritivo, gráfico e tabular;
 
 Para melhor organização, este capítulo está dividido em tópicos a depender do assunto tratado.
 
-A [seção @sec-populacao-prisional-ciclo13] trata do indicadores que definem a população prisional brasileira considerando os diversos tipos de estabelecimentos, regimes de custódia, gênero do custodiados, modalidade de cumprimento de pena, além dos aspectos legais vinculados.
+A [seção @sec-populacao-prisional-ciclo13] trata do indicadores que definem a população prisional brasileira considerando os diversos tipos de estabelecimentos, regimes de custódia, gênero dos custodiados, modalidade de cumprimento de pena, além dos aspectos legais vinculados.
 
 O próximo tópico ([seção @sec-capacidade-prisional-ciclo13]) estabelece os valores vinculados às capacidades dos estabelecimentos prisionais contabilizando as vagas do sistema. A metodologia segrega o espaço interno das unidades através das particularidades dos regimes de custódia, gênero dos custodiados e tipos de estabelecimento.
 
@@ -42,17 +81,17 @@ A ocupação do sistema penitenciário é estudada na [seção @sec-ocupacao-cic
 
 A relação entre a população e a capacidade do Sistema Penitenciário Nacional é novamente analisada na [seção @sec-vagas-ciclo13], porém utiliza-se outra metodologia resultando nos valores absolutos para a falta ou excesso de vagas no sistema. O cálculo do valor de déficit / superávit de vagas considera as particularidades da população prisional e das capacidades internas às unidades penitenciárias.
 
-A [seção @sec-aprisionamento-ciclo13] compara a população prisional com indicadores populacionais do Instituto Brasileiro de Geografia e Estatística (IBGE). Com o cruzamento desses dados obtêm-se as taxas de aprisionamento e penalização. Apesar de terem suas particularidade e considerarem variáveis diferentes, ambas as taxas resumem a quantidade de pessoas cumprindo pena a cada porção de 100.000 habitantes em territórios nacional ou estadual.
+A [seção @sec-aprisionamento-ciclo13] compara a população prisional com indicadores populacionais do Instituto Brasileiro de Geografia e Estatística (IBGE). Com o cruzamento desses dados obtêm-se as taxas de aprisionamento e penalização. Apesar de terem suas particularidades e considerarem variáveis diferentes, ambas as taxas resumem a quantidade de pessoas cumprindo pena a cada porção de 100.000 habitantes em territórios nacional ou estadual.
 
 ## População Prisional {#sec-populacao-prisional-ciclo13}
 
 ```{r}
 populacao01_soma_brasil <- 
-  readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+  readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(ciclo == vetor_filtro_ciclo)
 
 populacao02_soma_brasil_sexo <- 
-  readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+  readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(sexo) |> 
   summarise(
@@ -92,7 +131,7 @@ A tabela abaixo detalha os indicadores populacionais do sistema separando-os de 
 ```{r}
 
 t1 <- 
-  readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+  readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(modalidade,sexo) |> 
   summarise(
@@ -164,7 +203,7 @@ Os próximos quadros resumem graficamente a tabela acima. A @fig-indicadores-pop
 #|       Incidência de cada modalidade de custódia em valores absolutos separadas por sexo.
 
 p1 <- 
- readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+ readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(modalidade,sexo) |> 
   summarise(
@@ -252,7 +291,7 @@ A @fig-indicadores-populacionais2-ciclo13 evidencia os valores relativos de cada
 
 
 p1_relativo <- 
- readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+ readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(modalidade) |> 
   summarise(
@@ -316,7 +355,7 @@ A tabela a seguir lista os indicadores mantendo-se a metodologia utilizada na [s
   
 
 t1 <- 
-  readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+  readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(uf,modalidade,sexo) |> 
   summarise(
@@ -395,7 +434,7 @@ A população prisional geral é apresentada graficamente na @fig-indicadores-po
 
 
 p1 <-  
-  readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+  readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     #modalidade == "Custódia em unidade prisional"
@@ -494,7 +533,7 @@ Utilizando a mesma metodologia, a @fig-indicadores-populacionais_uf2-ciclo13 rep
 
 
 p1 <-  
-  readRDS("../data/data_rds/rel02_populacao06.rds") |> 
+  readRDS("data/data_rds/rel02_populacao06.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     #modalidade == "Custódia em unidade prisional"
@@ -593,7 +632,7 @@ O gráfico na @fig-indicadores-populacionais_uf3-ciclo13 desenha as proporções
 
 
 p1 <-
-  readRDS("../data/data_rds/rel02_populacao06.rds") |>
+  readRDS("data/data_rds/rel02_populacao06.rds") |>
   filter(
     ciclo == vetor_filtro_ciclo,
     #modalidade == "Custódia em unidade prisional"
@@ -678,7 +717,7 @@ p1
 
 ## Capacidade das Unidades Prisionais {#sec-capacidade-prisional-ciclo13}
 
-A metodologia utilizada pelo Levantamento Nacional de Informações Penitenciárias - Infopen - para determinação da quantidade de vagas em cada estabelecimento prisional considera a autonomia das unidades federativas, nesse sentido, cada estado informa a quantidade de vagas de seus estabelecimentos prisionais baseado em critérios próprios de avaliação. Além disso, os equipamentos de monitoramento eletrônico adquiridos e/ou contratados não são considerados como vagas.
+A metodologia utilizada pelo Levantamento Nacional de Informações Penitenciárias - Infopen - para determinação da quantidade de vagas em cada estabelecimento prisional considera a autonomia das unidades federativas, nesse sentido, cada estado informa a quantidade de vagas de seus estabelecimentos prisionais baseado em critérios próprios de avaliação. Além disso, os equipamentos de monitoramento eletrônico adquiridos e/ou contratados não são considerados na contabilização das vagas.
 
 O indicadores de capacidade em âmbito nacional é estudado na [subseção @sec-indicadores-capacidade-ciclo13]. Nela são especificadas as vagas em unidades prisionais e contabilizada a quantidade de equipamentos de monitoramento eletrônico. Outro dado importante diz respeito a divisão da capacidade por gênero.
 
@@ -692,7 +731,7 @@ A metodologia para contabilização das vagas no sistema inclui apenas o espaço
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel01_capacidade01.rds") |> 
+  readRDS("data/data_rds/rel01_capacidade01.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(modalidade,sexo) |> 
   summarise(
@@ -764,7 +803,7 @@ A próxima análise utiliza-se da @fig-indicadores-capacidade-brasil-ciclo13 par
 #| layout-ncol: 2
 
 p1_relativo <- 
- readRDS("../data/data_rds/rel01_capacidade02.rds") |> 
+ readRDS("data/data_rds/rel01_capacidade02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade !=  "Domiciliar não monitorado eletronicamente"
@@ -818,7 +857,7 @@ p1_relativo
 
 
 p2_relativo <- 
- readRDS("../data/data_rds/rel01_capacidade02.rds") |> 
+ readRDS("data/data_rds/rel01_capacidade02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade ==  "Custódia em unidade prisional"
@@ -885,7 +924,7 @@ A @fig-indicadores-capacidade_uf1-ciclo13 ordena as unidades federativas de acor
 
 
 p1 <-  
-  readRDS("../data/data_rds/rel01_capacidade02.rds") |> 
+  readRDS("data/data_rds/rel01_capacidade02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade == "Custódia em unidade prisional"
@@ -983,7 +1022,7 @@ O próximo gráfico (@fig-indicadores-capacidade_uf2-ciclo13) evidencia a propor
 
 
 p1 <-  
-  readRDS("../data/data_rds/rel01_capacidade02.rds") |> 
+  readRDS("data/data_rds/rel01_capacidade02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade == "Custódia em unidade prisional"
@@ -1082,7 +1121,7 @@ A descrição gráfica das proporções entre gêneros é elaborada no gráfico 
 
 
 p1 <-
-  readRDS("../data/data_rds/rel01_capacidade02.rds") |>
+  readRDS("data/data_rds/rel01_capacidade02.rds") |>
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade == "Custódia em unidade prisional"
@@ -1201,7 +1240,7 @@ A [subseção @sec-ocupacao-uf-ciclo13] seguintes amplia a análise com os índi
 
 ```{r}
 tx_geral <-  
-  readRDS("../data/data_rds/rel03_ocupacao03.rds") |> 
+  readRDS("data/data_rds/rel03_ocupacao03.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(ciclo) |> 
   summarise(
@@ -1220,7 +1259,7 @@ Dessa forma, a metodologia considera a destinação do estabelecimento como crit
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel03_ocupacao03.rds") |> 
+  readRDS("data/data_rds/rel03_ocupacao03.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(tipo_estabelecimento) |> 
   summarise(
@@ -1251,7 +1290,7 @@ formattable::formattable(
  as.datatable(
     extensions = 'Buttons',
     escape = FALSE,
-    caption = "Tabela: Taxas de ocupação por unidade federativa, tipo de estabelecimento e regime.",
+    #caption = "Tabela: Taxas de ocupação por unidade federativa, tipo de estabelecimento e regime.",
     rownames = FALSE,
     class='hover cell-border stripe',
     filter = "top",
@@ -1290,7 +1329,7 @@ Mantendo a metodologia de cálculo da [subseção @sec-ocupacao-brasil-ciclo13],
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel03_ocupacao03.rds") |> 
+  readRDS("data/data_rds/rel03_ocupacao03.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(uf) |> 
   summarise(
@@ -1356,7 +1395,7 @@ A @fig-ocupacao-brasil-ciclo13 evidencia graficamente as maiores taxas de ocupa�
 #|       Taxa de ocupação por estado da federação.
 
 p1 <- 
-  readRDS("../data/data_rds/rel03_ocupacao03.rds") |> 
+  readRDS("data/data_rds/rel03_ocupacao03.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(uf) |> 
   summarise(
@@ -1425,7 +1464,7 @@ O próximo quadro aprofunda a análise anterior segregando a taxa de ocupação 
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel03_ocupacao03.rds") |> 
+  readRDS("data/data_rds/rel03_ocupacao03.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     #!tipo_estabelecimento %in% c("Aberto","Semiaberto")
@@ -1534,7 +1573,7 @@ A tabela abaixo lista os indicadores de déficit / superávit de acordo com o re
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel08_vagas02.rds") |> 
+  readRDS("data/data_rds/rel08_vagas02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade %in% c("Custódia em unidade prisional","Custódia em carceragens ou batalhões")
@@ -1609,7 +1648,7 @@ O gráfico na @fig-vagas-brasil-ciclo13 apresenta os valores graficamente. Dessa
 #|       de vagas do sistema prisional.
 
 p1 <- 
- readRDS("../data/data_rds/rel08_vagas02.rds") |> 
+ readRDS("data/data_rds/rel08_vagas02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade %in% c("Custódia em unidade prisional","Custódia em carceragens ou batalhões")
@@ -1704,7 +1743,7 @@ A análise deste tópico continua com a disposição das informações segregada
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel08_vagas02.rds") |> 
+  readRDS("data/data_rds/rel08_vagas02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade %in% c("Custódia em unidade prisional","Custódia em carceragens ou batalhões")
@@ -1776,7 +1815,7 @@ A próxima tabela estende a análise, desta vez, com a inclusão dos índices de
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel08_vagas02.rds") |> 
+  readRDS("data/data_rds/rel08_vagas02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
      modalidade %in% c("Custódia em unidade prisional","Custódia em carceragens ou batalhões")
@@ -1858,7 +1897,7 @@ O gráfico na @fig-vagas-ufs-ciclo13 mostra o total do índices de déficit / su
 #|       Déficit / superávit de vagas por estado da federação.
 
 p1 <- 
- readRDS("../data/data_rds/rel08_vagas02.rds") |> 
+ readRDS("data/data_rds/rel08_vagas02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo,
     modalidade %in% c("Custódia em unidade prisional","Custódia em carceragens ou batalhões")
@@ -1959,7 +1998,7 @@ A segmentação das taxas entre os estados brasileiros acontece na [subseção @
 
 ```{r}
 apris_brasil <- 
-  readRDS("../data/data_rds/rel07_taxas02.rds") |> 
+  readRDS("data/data_rds/rel07_taxas02.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(uf) |> 
   summarise(
@@ -1971,7 +2010,7 @@ apris_brasil <-
   )
 
 rel_generos <- 
-  readRDS("../data/data_rds/rel07_taxas02.rds") |> 
+  readRDS("data/data_rds/rel07_taxas02.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   ungroup() |> 
   select(
@@ -2002,7 +2041,7 @@ O quadro abaixo mostra as taxas e populações mitigadas por gênero. A intenç�
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel07_taxas02.rds") |> 
+  readRDS("data/data_rds/rel07_taxas02.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   ungroup() |> 
   select(
@@ -2075,7 +2114,7 @@ O gráfico na @fig-aprisionamento-ufs-sexo-ciclo13 compara as taxas de aprisiona
 #| layout-ncol: 2  
 
 p1 <- 
- readRDS("../data/data_rds/rel07_taxas02.rds") |> 
+ readRDS("data/data_rds/rel07_taxas02.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo
     ) |> 
@@ -2226,7 +2265,7 @@ A análise dos índices de aprisionamento e penalização continua com a estrati
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel07_taxas01.rds") |> 
+  readRDS("data/data_rds/rel07_taxas01.rds") |> 
   filter(ciclo == vetor_filtro_ciclo) |> 
   group_by(uf) |> 
   summarise(
@@ -2302,7 +2341,7 @@ A @fig-aprisionamento-ufs-ciclo13 resume graficamente a tabela anterior e realiz
 #|       Comparação entre as taxas de aprisionamento e penalização por estados da federação.
 
 p1 <- 
- readRDS("../data/data_rds/rel07_taxas01.rds") |> 
+ readRDS("data/data_rds/rel07_taxas01.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo
     ) |> 
@@ -2379,7 +2418,7 @@ Para comparação entre gêneros, a tabela abaixo mostra as taxas estudadas nest
 
 ```{r}
 t1 <-  
-  readRDS("../data/data_rds/rel07_taxas01.rds") |> 
+  readRDS("data/data_rds/rel07_taxas01.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo
     ) |> 
@@ -2457,7 +2496,7 @@ A @fig-aprisionamento-ufs-sexo2-ciclo13 compara graficamente a taxas de aprision
 #|       Comparação entre as taxas de aprisionamento entre gênero para cada estados da federação.
 
 p1 <- 
- readRDS("../data/data_rds/rel07_taxas01.rds") |> 
+ readRDS("data/data_rds/rel07_taxas01.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo
     ) |> 
@@ -2544,7 +2583,7 @@ O próximo gráfico (@fig-aprisionamento-ufs-sexo3-ciclo13) repete a metodologia
 #|       Comparação entre as taxas de penalização entre gêneros para cada estado da federação.
 
 p1 <- 
- readRDS("../data/data_rds/rel07_taxas01.rds") |> 
+ readRDS("data/data_rds/rel07_taxas01.rds") |> 
   filter(
     ciclo == vetor_filtro_ciclo
     ) |> 

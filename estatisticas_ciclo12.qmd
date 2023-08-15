@@ -30,11 +30,47 @@ vetor_modalidade <- c("Custódia em unidade prisional",
 
 Este capítulo traz as informações pormenorizadas acerca do `r str_c(vetor_filtro_ciclo,"°")` ciclo do Levantamento Nacional de Informações Penitenciárias - Infopen - referente ao `r vetor_filtro_semestre` semestre de `r vetor_filtro_ano`.
 
-O objetivo principal é mapear as características do Sistema Penitenciário Nacional (SPN) de acordo com as áreas de atuação da Diretoria de Políticas Penitenciárias - Dirpp. Especificamente, este capítulo visa: gerar índices / indicadores para apoio a tomada de decisão dos gestores; e explicar as informações em formatos descritivo, gráfico e tabular;
+```{r}
+rel09_unid01 <- 
+  readRDS("data/data_rds/rel09_unid01.rds") |>
+  filter(ciclo == vetor_filtro_ciclo) 
+```
+
+
+Este capítulo traz as informações pormenorizadas acerca do `r str_c(vetor_filtro_ciclo,"°")` ciclo do Levantamento Nacional de Informações Penitenciárias - Infopen - referente ao `r vetor_filtro_semestre` semestre de `r vetor_filtro_ano`.
+
+Foram coletadas informações de 
+**`r format(sum(rel09_unid01$conta_unidades), big.mark = ".", decimal.mark = ",")`**
+unidades prisionais das **1.551** existentes em territórios nacional 
+administradas pelo poder executivo em âmbitos federal e estadual, ou seja, cerca de **98%** dos estabelecimentos
+responderam à pesquisa. Essas unidades são divididas em três tipos básicos considerando a forma 
+de monitoramento da custódia, sendo: 
+**`r format(rel09_unid01$conta_unidades[1], big.mark = ".", decimal.mark = ",")`**
+unidades realizando a custódia tradicional de pessoas; 
+**`r format(rel09_unid01$conta_unidades[2], big.mark = ".", decimal.mark = ",")`**
+estabelecimentos possuindo infraestrutura para monitoramento eletrônico de pessoas em prisão 
+domiciliar e; por fim,
+**`r format(rel09_unid01$conta_unidades[3], big.mark = ".", decimal.mark = ",")`**
+locais com responsabilidade de fiscalização de pessoas em prisão domiciliar sem 
+auxílio de dispositivos eletrônicos de monitoramento. 
+
+
+Outra fonte de dados traz informações acerca de pessoas presas em carceragens de delegacias e batalhões de polícia e bombeiro
+militares. Essa pesquisa é realizada em formulário simplificado diretamente com os órgãos responsáveis 
+pela administração dos supramencionados locais de encarceramento. Nesse caso, não houve resposta dos
+orgãos no seguintes estados:
+
+- **Departamento de Polícia Civil:** Alagoas, Ceará, Pará e Paraíba;
+
+- **Polícia Militar:** Sergipe;
+
+- **Corpo de Bombeiro Militar:** Alagoas, Amazonas, Amapá, Maranhão e Rio Grande do Norte.
+
+O objetivo principal deste capítulo é mapear as características do Sistema Penitenciário Nacional (SPN) com prioridade de acordo com as áreas de atuação da Diretoria de Políticas Penitenciárias - Dirpp. Especificamente, este capítulo visa: gerar índices / indicadores para apoio a tomada de decisão dos gestores; e explicar as informações em formatos descritivo, gráfico e tabular;
 
 Para melhor organização, este capítulo está dividido em tópicos a depender do assunto tratado.
 
-A [seção @sec-populacao-prisional-ciclo12] trata do indicadores que definem a população prisional brasileira considerando os diversos tipos de estabelecimentos, regimes de custódia, gênero do custodiados, modalidade de cumprimento de pena, além dos aspectos legais vinculados.
+A [seção @sec-populacao-prisional-ciclo12] trata do indicadores que definem a população prisional brasileira considerando os diversos tipos de estabelecimentos, regimes de custódia, gênero dos custodiados, modalidade de cumprimento de pena, além dos aspectos legais vinculados.
 
 O próximo tópico ([seção @sec-capacidade-prisional-ciclo12]) estabelece os valores vinculados às capacidades dos estabelecimentos prisionais contabilizando as vagas do sistema. A metodologia segrega o espaço interno das unidades através das particularidades dos regimes de custódia, gênero dos custodiados e tipos de estabelecimento.
 
@@ -42,7 +78,7 @@ A ocupação do sistema penitenciário é estudada na [seção @sec-ocupacao-cic
 
 A relação entre a população e a capacidade do Sistema Penitenciário Nacional é novamente analisada na [seção @sec-vagas-ciclo12], porém utiliza-se outra metodologia resultando nos valores absolutos para a falta ou excesso de vagas no sistema. O cálculo do valor de déficit / superávit de vagas considera as particularidades da população prisional e das capacidades internas às unidades penitenciárias.
 
-A [seção @sec-aprisionamento-ciclo12] compara a população prisional com indicadores populacionais do Instituto Brasileiro de Geografia e Estatística (IBGE). Com o cruzamento desses dados obtêm-se as taxas de aprisionamento e penalização. Apesar de terem suas particularidade e considerarem variáveis diferentes, ambas as taxas resumem a quantidade de pessoas cumprindo pena a cada porção de 100.000 habitantes em territórios nacional ou estadual.
+A [seção @sec-aprisionamento-ciclo12] compara a população prisional com indicadores populacionais do Instituto Brasileiro de Geografia e Estatística (IBGE). Com o cruzamento desses dados obtêm-se as taxas de aprisionamento e penalização. Apesar de terem suas particularidades e considerarem variáveis diferentes, ambas as taxas resumem a quantidade de pessoas cumprindo pena a cada porção de 100.000 habitantes em territórios nacional ou estadual.
 
 ## População Prisional {#sec-populacao-prisional-ciclo12}
 
@@ -678,7 +714,7 @@ p1
 
 ## Capacidade das Unidades Prisionais {#sec-capacidade-prisional-ciclo12}
 
-A metodologia utilizada pelo Levantamento Nacional de Informações Penitenciárias - Infopen - para determinação da quantidade de vagas em cada estabelecimento prisional considera a autonomia das unidades federativas, nesse sentido, cada estado informa a quantidade de vagas de seus estabelecimentos prisionais baseado em critérios próprios de avaliação. Além disso, os equipamentos de monitoramento eletrônico adquiridos e/ou contratados não são considerados como vagas.
+A metodologia utilizada pelo Levantamento Nacional de Informações Penitenciárias - Infopen - para determinação da quantidade de vagas em cada estabelecimento prisional considera a autonomia das unidades federativas, nesse sentido, cada estado informa a quantidade de vagas de seus estabelecimentos prisionais baseado em critérios próprios de avaliação. Além disso, os equipamentos de monitoramento eletrônico adquiridos e/ou contratados não são considerados na contabilização das vagas.
 
 O indicadores de capacidade em âmbito nacional é estudado na [subseção @sec-indicadores-capacidade-ciclo12]. Nela são especificadas as vagas em unidades prisionais e contabilizada a quantidade de equipamentos de monitoramento eletrônico. Outro dado importante diz respeito a divisão da capacidade por gênero.
 
@@ -1251,7 +1287,7 @@ formattable::formattable(
  as.datatable(
     extensions = 'Buttons',
     escape = FALSE,
-    caption = "Tabela: Taxas de ocupação por unidade federativa, tipo de estabelecimento e regime.",
+    #caption = "Tabela: Taxas de ocupação por unidade federativa, tipo de estabelecimento e regime.",
     rownames = FALSE,
     class='hover cell-border stripe',
     filter = "top",
