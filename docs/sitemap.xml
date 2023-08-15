@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.gov.br/depen/pt-br/index.html</loc>
-    <lastmod>2023-06-22T16:25:52.486Z</lastmod>
+    <lastmod>2023-08-15T18:43:15.211Z</lastmod>
   </url>
   <url>
     <loc>https://www.gov.br/depen/pt-br/metodologia.html</loc>
-    <lastmod>2023-06-22T16:25:52.492Z</lastmod>
+    <lastmod>2023-08-15T18:51:50.343Z</lastmod>
   </url>
   <url>
     <loc>https://www.gov.br/depen/pt-br/estatisticas_ciclo13.html</loc>
-    <lastmod>2023-06-22T16:28:23.125Z</lastmod>
+    <lastmod>2023-08-15T18:52:11.824Z</lastmod>
+  </url>
+  <url>
+    <loc>https://www.gov.br/depen/pt-br/estatisticas_ciclo12.html</loc>
+    <lastmod>2023-08-15T18:43:15.249Z</lastmod>
   </url>
 </urlset>
