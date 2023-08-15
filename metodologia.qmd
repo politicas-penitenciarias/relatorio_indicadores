@@ -14,14 +14,16 @@ Nesse sentido, o Sisdepen é uma ferramenta de uso gratuito fornecida pelo Minis
 
 A coleta de dados do Infopen possui periodicidade semestral (ciclos) com dois **períodos de referência** e duas **datas de referência**. Essa metodologia de coleta sugere uma "fotografia" do Sistema Penitenciário Nacional (SPN) nas datas de 30 de junho e 31 de dezembro de cada ano. A excessão vale para itens que necessitam ser avaliados em um intervalo de tempo, como por exemplo, *"quantidade de apreensões de ilícitos no período de referência"*.
 
+[**INCLUIR TÓPICO SOBRE A COLETA DAS SSPs.**]{.underline}
+
 ## Hierarquia do processo {#sec-hierarquia}
 
 Cada ator do processo do levantamento recebe funções bem definidas com possibilidade de acumulação de atividades por um mesmo operador.
 
--   **Usuário Institucional Estadual:**
--   **Gestor Institucional Estadual:**
--   **Gestor Institucional Federal:**
--   **Administrador:**
+-   **Usuário Institucional Estadual;**
+-   **Gestor Institucional Estadual;**
+-   **Gestor Institucional Federal;**
+-   **Administrador.**
 
 ## Etapas do processo {#sec-etapas}
 

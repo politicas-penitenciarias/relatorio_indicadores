@@ -1,4 +1,18 @@
-# Quem somos nós {.unnumbered}
+# Secretaria Nacional dos Serviços Penais - Senappen {.unnumbered}
+
+A Secretaria Nacional de Políticas Penais (SENAPPEN) é o órgão executivo que acompanha e controla a aplicação da Lei de Execução Penal e das diretrizes da Política Penitenciária Nacional, emanadas, principalmente, pelo Conselho Nacional de Política Criminal e Penitenciária -- CNPCP [@senappen01].
+
+Suas competências foram positivadas nos artigos 71 e 72 da [Lei nº 7.210, de 11 de julho de 1984 - Lei de Execução Penal](https://www.planalto.gov.br/ccivil_03/leis/l7210.htm) e regimentadas na [Portaria nº 199 de 9 de novembro de 2018](https://dspace.mj.gov.br/bitstream/1/317/3/PRT_MSP_GM_2018_199.html "Portaria nº 199 de 9 de novembro de 2018").
+
+O órgão federal está integrado à estrutura do [Ministério da Justiça e Segurança Pública](https://www.gov.br/mj/pt-br "Ministério da Justiça e Segurança Pública") definida no [Decreto nº 11.348, de 1º de janeiro de 2023](http://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/decreto/D11348.htm "Decreto nº 11.348, de 1º de janeiro de 2023").
+
+A Secretaria é **responsável pelo Sistema Penitenciário Federal**, cujos principais objetivos são isolamento das lideranças do crime organizado, cumprimento rigoroso da Lei de Execução Penal e custódia de presos condenados e provisórios sujeitos ao regime disciplinar diferenciado; líderes de organizações criminosas; presos responsáveis pela prática reiterada de crimes violentos; presos responsáveis por ato de fuga ou grave indisciplina no sistema prisional de origem; presos de alta periculosidade e que possam comprometer a ordem e segurança pública; réus colaboradores presos ou delatores premiados.
+
+Além disso, a Senappen é gestora do [Fundo Penitenciário Nacional -- FUNPEN](https://www.gov.br/senappen/pt-br/assuntos/funpen "Fundo Penitenciário Nacional – FUNPEN"), criado pela [Lei Complementar n° 79, de 07 de janeiro de 1994](https://www.planalto.gov.br/ccivil_03/leis/lcp/Lcp79.htmcompilado.htm#:~:text=LEI%20COMPLEMENTAR%20N%C2%BA%2079%2C%20DE%2007%20DE%20JANEIRO%20DE%201994&text=Cria%20o%20Fundo%20Penitenci%C3%A1rio%20Nacional%20%2D%20FUNPEN%2C%20e%20d%C3%A1%20outras%20provid%C3%AAncias.&text=IX%20%2D%20rendimentos%20de%20qualquer%20natureza,lhe%20forem%20destinados%20por%20lei. "Lei Complementar n° 79, de 07 de janeiro de 1994") e regulamentado pelo [Decreto n° 1.093, de 23 de março de 1994](https://www.planalto.gov.br/ccivil_03/decreto/1990-1994/D1093.htm "Decreto n° 1.093, de 23 de março de 1994"). O fundo tem a finalidade de proporcionar recursos e meios para financiar e apoiar as atividades e os programas de modernização e aprimoramento do sistema penitenciário nacional.
+
+Em 1º de janeiro de 2023, por força do artigo 59 da [Medida Provisória nº 1.154](http://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/Mpv/mpv1154.htm#:~:text=MEDIDA%20PROVIS%C3%93RIA%20N%C2%BA%201.154%2C%20DE%201%C2%BA%20DE%20JANEIRO%20DE%202023&text=Estabelece%20a%20organiza%C3%A7%C3%A3o%20b%C3%A1sica%20dos,Art. "Medida Provisória nº 1.154") , o Departamento Penitenciário Nacional - DEPEN - foi transformado na Secretaria Nacional de Políticas Penais, mantendo as competências e a execução das responsabilidades estabelecidas em lei.
+
+# Diretoria de Políticas Penitenciárias - Dirpp/Senappen {.unnumbered}
 
 A Diretoria de Políticas Penitenciárias - Dirpp - está vinculada à Secretaria Nacional de Políticas Penais (Senappen) do Ministério da Justiça e Segurança Pública (MJSP).
 
